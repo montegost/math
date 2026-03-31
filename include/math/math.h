@@ -118,11 +118,11 @@ bool power( long base, long exponent, long* res) {
 bool factorial(long firstValue, long* result) {
     if (firstValue < 0)
     {
-        printf("factorial must be not negative. %ld\n", a);
+        printf("factorial must be not negative. %ld\n", firstValue);
         return false;
     }
     
-    if (firstValue == 0 || a == 1) {
+    if (firstValue == 0 || firstValue == 1) {
         *result = 1;
         return true;
     }
