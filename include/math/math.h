@@ -6,12 +6,12 @@
 
 namespace math {
 
-bool addition( long a, long b, long* res )
+bool addition( long firstValue, long secondValue, long* res )
 {
     long result;
-    if (__builtin_add_overflow(a, b, &result))
+    if (__builtin_add_overflow(firstValue, secondValue, &result))
     {
-        printf("Addition %ld + %ld makes overflow!\n", a, b);
+        printf("Addition %ld + %ld makes overflow!\n", firstValue, secondValue);
         return false;
     }
     if (res == nullptr){
@@ -24,12 +24,12 @@ bool addition( long a, long b, long* res )
     return true;
 }
 
-bool subtraction( long a, long b, long* res )
+bool subtraction( long firstValue, long secondValue, long* res )
 {
     long result;
-    if (__builtin_sub_overflow(a, b, &result))
+    if (__builtin_sub_overflow(firstValue, secondValue, &result))
     {
-        printf("Subtraction %ld - %ld makes overflow!\n", a, b);
+        printf("Subtraction %ld - %ld makes overflow!\n", firstValue, secondValue);
         return false;
     }
     if (res == nullptr){
@@ -42,11 +42,11 @@ bool subtraction( long a, long b, long* res )
     return true;
 }
 
-bool multiplication(long a, long b, long* res) {
+bool multiplication(long firstValue, long secondValue, long* res) {
     long result;
-    if (__builtin_mul_overflow(a, b, &result))
+    if (__builtin_mul_overflow(firstValue, secondValue, &result))
     {
-        printf("Multiplication %ld * %ld makes overflow!\n", a, b);
+        printf("Multiplication %ld * %ld makes overflow!\n", firstValue, secondValue);
         return false;
     }
     if (res == nullptr){
@@ -59,8 +59,8 @@ bool multiplication(long a, long b, long* res) {
     return true;
 }
 
-bool division(long a, long b, long* res) {
-    if (b == 0) {
+bool division(long firstValue, long secondValue, long* res) {
+    if (secondValue == 0) {
         printf("Division on 0\n");
         return false;  // Ошибка: деление на ноль
     }
@@ -69,8 +69,8 @@ bool division(long a, long b, long* res) {
     // Так как LONG_MIN = -9223372036854775808
     // А LONG_MAX = 9223372036854775807
     // -LONG_MIN не помещается в long
-    if (a == LONG_MIN && b == -1) {
-        printf("Division %ld / %ld makes overflow!\n", a, b);
+    if (firstValue == LONG_MIN && secondValue == -1) {
+        printf("Division %ld / %ld makes overflow!\n", firstValue, secondValue);
         return false;
     }
     
@@ -79,7 +79,7 @@ bool division(long a, long b, long* res) {
         return false;
     }
     
-    *res = a / b;
+    *res = firstValue / secondValue;
     return true;
 }
 
@@ -115,24 +115,24 @@ bool power( long base, long exponent, long* res) {
     return true;
 }
 
-bool factorial(long a, long* result) {
-    if (a < 0)
+bool factorial(long firstValue, long* result) {
+    if (firstValue < 0)
     {
         printf("factorial must be not negative. %ld\n", a);
         return false;
     }
     
-    if (a == 0 || a == 1) {
+    if (firstValue == 0 || a == 1) {
         *result = 1;
         return true;
     }
     
     long sub_result;
-    if (!factorial(a - 1, &sub_result)) {
+    if (!factorial(firstValue - 1, &sub_result)) {
         return false;  // Переполнение в рекурсивном вызове
     }
     
-    if (__builtin_mul_overflow(sub_result, a, result)) {
+    if (__builtin_mul_overflow(sub_result, firstValue, result)) {
         printf("Factorial makes overflow!\n");
         return false;
     }
