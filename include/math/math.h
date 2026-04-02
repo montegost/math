@@ -101,7 +101,7 @@ inline bool power( long base, long exponent, long* res) {
     
     long result = 1;
     
-    for (unsigned int i = 0; i < exponent; i++) {
+    for (long i = 0; i < exponent; i++) {
         if (__builtin_mul_overflow(result, base, &result))
         {
             printf("Power %ld ^ %ld makes overflow!\n", base, exponent);
