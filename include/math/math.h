@@ -6,7 +6,7 @@
 
 namespace math {
 
-bool addition( long firstValue, long secondValue, long* res )
+inline bool addition( long firstValue, long secondValue, long* res )
 {
     long result;
     if (__builtin_add_overflow(firstValue, secondValue, &result))
@@ -24,7 +24,7 @@ bool addition( long firstValue, long secondValue, long* res )
     return true;
 }
 
-bool subtraction( long firstValue, long secondValue, long* res )
+inline bool subtraction( long firstValue, long secondValue, long* res )
 {
     long result;
     if (__builtin_sub_overflow(firstValue, secondValue, &result))
@@ -42,7 +42,7 @@ bool subtraction( long firstValue, long secondValue, long* res )
     return true;
 }
 
-bool multiplication(long firstValue, long secondValue, long* res) {
+inline bool multiplication(long firstValue, long secondValue, long* res) {
     long result;
     if (__builtin_mul_overflow(firstValue, secondValue, &result))
     {
@@ -59,7 +59,7 @@ bool multiplication(long firstValue, long secondValue, long* res) {
     return true;
 }
 
-bool division(long firstValue, long secondValue, long* res) {
+inline bool division(long firstValue, long secondValue, long* res) {
     if (secondValue == 0) {
         printf("Division on 0\n");
         return false;  // Ошибка: деление на ноль
@@ -83,7 +83,7 @@ bool division(long firstValue, long secondValue, long* res) {
     return true;
 }
 
-bool power( long base, long exponent, long* res) {
+inline bool power( long base, long exponent, long* res) {
     if (res == nullptr){
         printf("res must be not nullptr");
         return false;
@@ -115,7 +115,7 @@ bool power( long base, long exponent, long* res) {
     return true;
 }
 
-bool factorial(long firstValue, long* result) {
+inline bool factorial(long firstValue, long* result) {
     if (firstValue < 0)
     {
         printf("factorial must be not negative. %ld\n", firstValue);
