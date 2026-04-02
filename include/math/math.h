@@ -88,15 +88,15 @@ inline bool power( long base, long exponent, long* res) {
         printf("res must be not nullptr");
         return false;
     }
-    
-    if (exponent <= 0) {
-        printf("exponent must be not negative");
-        return false;
-    }
-    
+
     if (exponent == 0) {
         *res = 1;
         return true;
+    }
+    
+    if (exponent < 0) {
+        printf("exponent must be not negative");
+        return false;
     }
     
     long result = 1;
